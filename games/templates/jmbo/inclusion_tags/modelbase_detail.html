@@ -1,6 +1,7 @@
 {% load jmbo_template_tags %}
 
 <div class="object-detail-inclusion {{ object.class_name.lower }}-detail-inclusion">
+<a> Text Yay?-2 </a>
     {% block content %}
 	<a> Text Yay?-1 </a>
         {% jmbocache 1200 'object-detail-inclusion' object.id object.modified %}
