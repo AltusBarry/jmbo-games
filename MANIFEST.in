@@ -1,0 +1,13 @@
+include AUTHORS.rst
+include CHANGELOG.rst
+include LICENSE
+include README.rst
+include demo.sh
+include setup-development.sh
+include *.conf.in
+include test_settings.py
+recursive-include scripts *
+recursive-include games/static *
+recursive-include games/fixtures *
+recursive-include games/migrations *
+recursive-include games/management *
