@@ -19,13 +19,61 @@
         "pk": null,
         "model": "photologue.photosize",
         "fields": {
-            "name": "reviewer_detail",
+            "name": "reviewer_detail_basic",
             "watermark": null,
             "increment_count": false,
             "effect": null,
             "crop": true,
-            "height": 80,
-            "width": 60,
+            "height": 60,
+            "width": 80,
+            "upscale": true,
+            "pre_cache": false,
+            "quality": 70
+        }
+    },
+    {
+        "pk": null,
+        "model": "photologue.photosize",
+        "fields": {
+            "name": "reviewer_detail_web",
+            "watermark": null,
+            "increment_count": false,
+            "effect": null,
+            "crop": true,
+            "height": 100,
+            "width": 200,
+            "upscale": true,
+            "pre_cache": false,
+            "quality": 70
+        }
+    },
+    {
+        "pk": null,
+        "model": "photologue.photosize",
+        "fields": {
+            "name": "game_detail_basic",
+            "watermark": null,
+            "increment_count": false,
+            "effect": null,
+            "crop": true,
+            "height": 120,
+            "width": 160,
+            "upscale": true,
+            "pre_cache": false,
+            "quality": 70
+        }
+    },
+    {
+        "pk": null,
+        "model": "photologue.photosize",
+        "fields": {
+            "name": "game_detail_web",
+            "watermark": null,
+            "increment_count": false,
+            "effect": null,
+            "crop": true,
+            "height": 200,
+            "width": 400,
             "upscale": true,
             "pre_cache": false,
             "quality": 70
