@@ -1,0 +1,24 @@
+{% extends "jmbo/inclusion_tags/modelbase_detail.html" %}
+{% load jmbo_template_tags %}
+
+{% block content %}
+    {% jmbocache 1200 'object-detail-inclusion' object.id object.modified %}
+        {% if object.image %}
+            <img src="{{ object.image_detail_url }}" />
+            {% if object.image_attribution %}
+                <div class="attribution">{{ object.image_attribution }}</div>
+            {% endif %}
+        {% endif %}
+        {% if object.description %}
+            <div class="description">
+                {{ object.description|linebreaks }}
+            </div>
+        {% endif %}
+        Games:
+        <ul>
+            {% for game in object.games %}
+                <li>{{ game.title }}</li>
+            {% endfor %}
+        </ul>
+    {% endjmbocache %}
+{% endblock %}
