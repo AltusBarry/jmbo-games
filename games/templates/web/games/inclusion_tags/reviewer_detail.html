@@ -14,5 +14,15 @@
                 {{ object.description|linebreaks }}
             </div>
         {% endif %}
+        Games:
+        {% with object.games as games %}
+            {% autopaginate games 2 %}
+        <ul>
+            {% for game in games %}
+                <li>{{ game.title }}</li>
+            {% endfor %}
+        </ul>
+            {% paginate %}
+        {% endwith %}
     {% endjmbocache %}
 {% endblock %}

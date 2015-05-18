@@ -9,19 +9,30 @@ class TrivialContent(ModelBase):
 
 
 class Game(ModelBase):
-    reviewer = models.ForeignKey("Reviewer")
-    """ 
-    review_text = RichTextField( blank=True, null=True, )
-    """
-    review_text = "TEXT"
+
+    @property
+    def average_rating(self):
+        return 1
 
 
-class Reviewer(ModelBase):
-    reviewer_name = models.CharField(max_length=100)
+class Reviewer(models.Model):
+    name = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return self.reviewer_name
+        return self.name
+
+
+class Review(ModelBase):
+    """Contains game and reviewer data as well as rating"""
+    game = models.ForeignKey(Game)
+    content = RichTextField()
+    reviewer = models.ForeignKey(Reviewer)
+    rating = models.PositiveIntegerField(min_value=1, max_value=5, default=1)
 
     @property
     def games(self):
         return self.game_set.all().order_by("title")
+
+
+class Character(ModelBase):
+    games = models.ManyToManyField(Game)

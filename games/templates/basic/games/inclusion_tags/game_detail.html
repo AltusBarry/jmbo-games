@@ -14,6 +14,14 @@
                 {{ object.description|linebreaks }}
             </div>
         {% endif %}
+        Character(s):
+        {% if object.character %}
+            <ul>
+                {% for character in object.character %}
+                    <li>charater.title</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         {% if object.reviewer %}
             <a href="{{ object.reviewer.get_absolute_url }}"> {{ object.reviewer.title }} </a>
         {% endif %}
