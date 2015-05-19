@@ -1,5 +1,5 @@
 {% extends "jmbo/inclusion_tags/modelbase_detail.html" %}
-{% load jmbo_template_tags foundry_tags %}
+{% load jmbo_template_tags %}
 
 {% block content %}
     {% jmbocache 1200 'object-detail-inclusion' object.id object.modified %}
@@ -14,19 +14,16 @@
                 {{ object.description|linebreaks }}
             </div>
         {% endif %}
-        {% with object.characters as characters %}
-            {% if characters %}
-            Character(s):
-                <ul>
-                    {% for character in characters %}
-                        <li>
-                        {{ character.title }}
-                        <img src="{{ character.get_thumbnail_url }}" />
-                        </li>
-                    {% endfor %}
-                </ul>
-                {% listing characters title="Characters" style="VerticalThumbnail" %}
-            {% endif %}
-        {% endwith %}
+        Character(s):
+        {% if object.character %}
+            <ul>
+                {% for character in object.character %}
+                    <li>charater.title</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if object.reviewer %}
+            <a href="{{ object.reviewer.get_absolute_url }}"> {{ object.reviewer.title }} </a>
+        {% endif %}
     {% endjmbocache %}
 {% endblock %}
