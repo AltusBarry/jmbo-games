@@ -9,9 +9,9 @@ from games.models import TrivialContent, Game, Review, Reviewer, Character
 class ReviewAdminForm(forms.ModelForm):
     class Meta:
         model = Review
-        widgets =   {
-            'rating' :forms. RadioSelect
-                    }
+        widgets = {
+            "rating": forms.RadioSelect
+        }
 
 
 class ReviewAdmin(ModelBaseAdmin):

@@ -35,14 +35,12 @@ class Review(ModelBase):
     content = RichTextField()
     reviewer = models.ForeignKey(Reviewer)
 
-    RATING_CHOICES = []
-    lowest_rating = 1
-    highest_rating = 5
+    rating = models.PositiveIntegerField(choices=[(r, r) for r in range(1, 6)],
+        default=1)
 
-    for r in range(lowest_rating, (highest_rating+1)):
-        RATING_CHOICES.append((r, r))
-
-    rating = models.PositiveIntegerField(choices=RATING_CHOICES, default=1)
+    @property
+    def games(self):
+        return self.game_set.all()
 
 
 class Character(ModelBase):
