@@ -12,6 +12,8 @@ class TrivialContent(ModelBase):
 
 
 class Game(ModelBase):
+    def __unicode__(self):
+        return self.title
 
     @property
     def average_rating(self):
