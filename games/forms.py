@@ -21,12 +21,24 @@ class ReviewForm(ModelForm):
 
 
 class ReviewFormAlt(forms.Form):
-    games = forms.ModelChoiceField(queryset=Game.objects.all())
-    title = "-Review"
+    game = forms.ModelChoiceField(queryset=Game.objects.all())
+    title = forms.CharField()
     content = forms.CharField()
     reviewer = forms.ModelChoiceField(queryset=Reviewer.objects.all(), widget=HiddenInput)
-    #forms.Form.fields["reviewer"].widget = forms.HiddenInput()
 
     def __init__(self, *args, **kwargs):
         print kwargs
-        super(ReviewFormAlt, self).__init__()
+        game = None
+        if kwargs.has_key("game"):
+            game = kwargs.pop("game")
+        super(ReviewFormAlt, self).__init__(*args, **kwargs)
+        # Set initial Values for fields
+        if not self.is_bound:
+            self.fields["game"].initial = game
+            self.fields["reviewer"].initial = Reviewer.objects.all()[0]
+            self.fields["title"].initial = game.title + "-Review"
+
+    def save(self):
+
+        # TODO merely put the whole cleaned data in, Review should be able to handle input
+        return Review.objects.create(**self.cleaned_data)

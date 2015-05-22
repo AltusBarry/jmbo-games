@@ -8,9 +8,9 @@ urlpatterns = patterns(
 
     "",
     url(r"^submit-review/$", CreateReview.as_view(), name="submit-review"),
-    url(r"^create-review-alt", submit_review,
+    url(r"^review-alt-submit/$", submit_review,
         name="review-alt-submit"),
-    url(r"^submit-review-success",
+    url(r"^submit-review-success/$",
         TemplateView.as_view(template_name="games/submit_review_success.html"),
         name="submit-review-success")
 
