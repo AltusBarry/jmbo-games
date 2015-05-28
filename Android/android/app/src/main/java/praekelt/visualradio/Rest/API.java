@@ -2,10 +2,10 @@ package praekelt.visualradio.Rest;
 
 import java.io.File;
 
-import praekelt.visualradio.Rest.Models.Game;
-import praekelt.visualradio.Rest.Models.GameListing;
+import praekelt.visualradio.Rest.Models.Item;
 import praekelt.visualradio.Rest.Models.ReceivedProfileData;
 import praekelt.visualradio.Rest.Models.SentProfileData;
+import praekelt.visualradio.Rest.Models.VerticalThumbnailListing;
 import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.GET;
@@ -50,9 +50,9 @@ public class API {
 
         //@Headers("Content-Type: application/json")
         @GET("/listing/game-index/?format=json")
-        void getGameList(Callback<GameListing> ls);
+        void getVerticalThumbnailListing(Callback<VerticalThumbnailListing> callback);
 
-        @GET("/jmbo/content/detail/{gameSlug}/?format=json")
-        void getGame(@Path("gameSlug") Callback<Game> game);
+        @GET("/jmbo/content/detail/{slug}/?format=json")
+        void getItem(@Path("slug") Callback<Item> callback);
     }
 }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import praekelt.visualradio.R;
-import praekelt.visualradio.Rest.Models.Game;
+import praekelt.visualradio.Rest.Models.Item;
 import praekelt.visualradio.Utils.Constants;
 
 /**
@@ -24,11 +24,11 @@ import praekelt.visualradio.Utils.Constants;
  */
 public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
     private LayoutInflater inflater;
-    private ArrayList<Game> games;
+    private ArrayList<Item> items;
     private ImageLoader imageLoader;
 
-    public IndexListAdapter(Context context, ArrayList<Game> contents) {
-        this.games = contents;
+    public IndexListAdapter(Context context, ArrayList<Item> contents) {
+        this.items = contents;
 
         inflater = LayoutInflater.from(context);
         imageLoader = new ImageLoader(context);
@@ -40,14 +40,14 @@ public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
      * notify the list adapter that data has been changed to update list view
      * @param data the data in the form of an list of ModelBase passed from the loader
      */
-    public void setData(List<Game> data) {
-        if (games != null) {
-            games.clear();
+    public void setData(List<Item> data) {
+        if (items != null) {
+            items.clear();
         } else {
-            games = new ArrayList<Game>();
+            items = new ArrayList<Item>();
         }
         if (data != null) {
-            games.addAll(data);
+            items.addAll(data);
         }
     }
 
@@ -76,7 +76,7 @@ public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
      */
     //TODO check if lists exists
     public View getView(int position, View convertView, ViewGroup parent) {
-        Game indexItem = getItem(position);
+        Item indexItem = getItem(position);
         ViewHolder viewHolder;
         int type = getItemViewType(position);
         // if current view does not exist, inflate new layout and add views to viewHolder
@@ -98,11 +98,11 @@ public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
     }
 
     public int getCount() {
-        return games.size();
+        return items.size();
     }
 
-    public Game getItem(int i) {
-        return games.get(i);
+    public Item getItem(int i) {
+        return items.get(i);
     }
 
     public long getItemId(int i) {

@@ -21,9 +21,9 @@ import praekelt.visualradio.ListView.GenericWebViewFragment;
 import praekelt.visualradio.ListView.IndexListFragment;
 import praekelt.visualradio.LoginArea.LoginActivity;
 import praekelt.visualradio.Rest.API;
-import praekelt.visualradio.Rest.Models.Game;
-import praekelt.visualradio.Rest.Models.GameListing;
+import praekelt.visualradio.Rest.Models.Item;
 import praekelt.visualradio.Rest.Models.ReceivedProfileData;
+import praekelt.visualradio.Rest.Models.VerticalThumbnailListing;
 import praekelt.visualradio.Utils.Constants;
 import praekelt.visualradio.Utils.SavedData;
 import retrofit.Callback;
@@ -47,7 +47,7 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
     private boolean inflatedState = false;
     private String inflatedView = "";
     private String prevInflatedView = "";
-    private Game inflatedData;
+    private Item inflatedData;
     private Bundle position = null;
     private SavedData savedData;
 
@@ -202,20 +202,20 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
    }
     // END ANDROID SPECIFIC METHODS
 
-    private List<Game> getList() {
-        final List<Game> list = new ArrayList<>();
+    private List<Item> getList() {
+        final List<Item> list = new ArrayList<>();
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(Constants.LOCAL_URL_BASE)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
 
         API.JMBOApi api = restAdapter.create(API.JMBOApi.class);
-        api.getGameList(new Callback<GameListing>() {
+        api.getVerticalThumbnailListing(new Callback<VerticalThumbnailListing>() {
 
             @Override
-            public void success(GameListing gameListing, Response response) {
-                Log.i("TITLE LIST:", gameListing.getTitle());
-                list.addAll(gameListing.getItems());
+            public void success(VerticalThumbnailListing listing, Response response) {
+                Log.i("TITLE LIST:", listing.getTitle());
+                list.addAll(listing.getItems());
             }
 
             @Override
@@ -260,15 +260,15 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
      * inflatedState is toggled to true
      * the inflated Data to be saved out is set
      * the Fragment is given its data to use
-     * @param game a Single ModelBase object's data for usage in inflated view
+     * @param item a Single ModelBase object's data for usage in inflated view
      */
-    public void inflateView(Game game, String id) {
+    public void inflateView(Item item, String id) {
 
         inflatedState = true;
-        inflatedData = game;
+        inflatedData = item;
 
-        Log.i("Inflating view: ", game.getClassName());
-        switch (game.getClassName()) {
+        Log.i("Inflating view: ", item.getClassName());
+        switch (item.getClassName()) {
             // Redundant else if for the off chance something went wrong and fragment was not properly removed
             case "Game":
                 if (genericView == null) {
@@ -311,7 +311,7 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
      * @param data
      */
 
-    public void setData(List<Game> data) {
+    public void setData(List<Item> data) {
 
         // Update List
         if(data.size() == 0) {

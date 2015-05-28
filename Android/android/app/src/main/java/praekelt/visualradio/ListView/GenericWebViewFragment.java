@@ -12,10 +12,10 @@ import android.webkit.WebView;
 import java.io.Serializable;
 
 import praekelt.visualradio.R;
-import praekelt.visualradio.Rest.Models.Game;
+import praekelt.visualradio.Rest.Models.Item;
 
 public class GenericWebViewFragment extends Fragment {
-        private Game game;
+        private Item item;
         public fragmentCallback callback;
         private boolean firstLaunch = true;
 
@@ -34,7 +34,7 @@ public class GenericWebViewFragment extends Fragment {
 
         public void onCreate(Bundle savedInstanceState) {
             if(savedInstanceState != null) {
-                game = (Game) savedInstanceState.getSerializable("viewData");
+                item = (Item) savedInstanceState.getSerializable("viewData");
                 firstLaunch = false;
             } else {
                 firstLaunch = true;
@@ -58,8 +58,8 @@ public class GenericWebViewFragment extends Fragment {
             super.onStart();
         }
 
-        public void setDetail(Game data) {
-            game = data;
+        public void setDetail(Item data) {
+            item = data;
             initDetail();
         }
 
@@ -68,7 +68,7 @@ public class GenericWebViewFragment extends Fragment {
          */
         public void initDetail() {
             WebView textBody = (WebView) getView().findViewById(R.id.text_body);
-                textBody.loadData((game.getPermalink()), "text/html; charset=UTF-8", null);
+                textBody.loadData("http://127.0.0.1:8000" + (item.getPermalink()), "text/html; charset=UTF-8", null);
                 getActivity().getActionBar().setTitle(R.string.title_news);
 
         }
@@ -83,7 +83,7 @@ public class GenericWebViewFragment extends Fragment {
         }
 
         public void onSaveInstanceState (Bundle outState) {
-            outState.putSerializable("viewData", (Serializable) game);
+            outState.putSerializable("viewData", (Serializable) item);
             super.onSaveInstanceState(outState);
         }
 

@@ -8,7 +8,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GameListing {
+public class VerticalThumbnailListing {
 
     @Expose
     private Integer count;
@@ -21,7 +21,7 @@ public class GameListing {
     @Expose
     private Integer id;
     @Expose
-    private List<Game> items = new ArrayList<Game>();
+    private List<Item> items = new ArrayList<Item>();
     @SerializedName("items_per_page")
     @Expose
     private Integer itemsPerPage;
@@ -122,7 +122,7 @@ public class GameListing {
      * @return
      * The items
      */
-    public List<Game> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
@@ -131,7 +131,7 @@ public class GameListing {
      * @param items
      * The items
      */
-    public void setItems(List<Game> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 

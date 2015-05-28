@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import praekelt.visualradio.R;
-import praekelt.visualradio.Rest.Models.Game;
+import praekelt.visualradio.Rest.Models.Item;
 
 /**
  * Created by altus on 2015/03/03.
@@ -42,7 +42,7 @@ public class IndexListFragment extends ListFragment {
     }
 
     public interface listCallbacks {
-        public void inflateView(Game game, String id);
+        public void inflateView(Item item, String id);
         public void setPosition(Bundle bundle);
         public void updateList();
         public String getFilter();
@@ -95,7 +95,7 @@ public class IndexListFragment extends ListFragment {
      */
     public void onListItemClick(ListView list, View v, int listPosition, long id) {
         //Send Data of Clicked Item
-        Game item = (Game) listAdapter.getItem(listPosition);
+        Item item = (Item) listAdapter.getItem(listPosition);
     }
 
     /**
@@ -105,13 +105,13 @@ public class IndexListFragment extends ListFragment {
         // Inflates the main layout
         Log.i("Initialising List", "True");
         // Assign adapter to ListView
-        listAdapter = new IndexListAdapter(getActivity().getApplicationContext(), new ArrayList<Game>());
+        listAdapter = new IndexListAdapter(getActivity().getApplicationContext(), new ArrayList<Item>());
 
         // Fragment needs to extend the ListFragment
         setListAdapter(listAdapter);
     }
 
-    public void setListData(List<Game> data) {
+    public void setListData(List<Item> data) {
             listAdapter.setData(data);
     }
 

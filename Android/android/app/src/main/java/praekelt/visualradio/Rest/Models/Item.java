@@ -6,7 +6,7 @@ package praekelt.visualradio.Rest.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Game {
+public class Item {
 
     @SerializedName("anonymous_comments")
     @Expose
