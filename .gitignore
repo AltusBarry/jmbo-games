@@ -13,7 +13,6 @@ develop-eggs/
 media/
 parts/
 games.db
-src/
 .idea/
 games-media/
 pycharm-4.5/
