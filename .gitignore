@@ -12,4 +12,13 @@ bin/
 develop-eggs/
 media/
 parts/
+games.db
 src/
+.idea/
+games-media/
+pycharm-4.5/
+ve/
+Android/android/.idea/
+Android/android/.gradle/
+Android/android/build/
+Android/android/*.iml

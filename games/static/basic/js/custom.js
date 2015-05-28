@@ -4,8 +4,14 @@ $(document).ready(function() {
         var div = $('ul', $(this).closest('div.characters'));
         div.toggle();
         var a = $(this);
-        $('span', s).hide();
-        div.is(':visible') ? $('span.hide', a).show() : $('span.show', a).hide();
+        $('span', a).hide();
+        (div.is(':visible')) ? $('span.hide', a).show() : $('span.show', a).show();
+        /*if(div.is(':visible')) {
+            $('span.hide', a).show();
+        }else {
+            $('span.show', a).show();
+        }*/
+        console.log(div.is(':visible'));
         return false;
     });
 });

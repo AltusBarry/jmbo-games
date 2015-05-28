@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy, reverse
@@ -14,6 +15,7 @@ class CreateReview(CreateView):
     template_name = "games/submit_review.html"
     success_url = reverse_lazy("submit-review-success")
 
+@login_required
 def submit_review(request):
 
     if request.method == "POST":
