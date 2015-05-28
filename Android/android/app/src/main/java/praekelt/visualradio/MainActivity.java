@@ -106,8 +106,6 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
            Log.i("SavedBundleState", savedInstanceState.toString());
         }
         initFragments();
-
-        getList();
     }
 
     protected void onNewIntent (Intent intent) {
@@ -216,6 +214,7 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
             public void success(VerticalThumbnailListing listing, Response response) {
                 Log.i("TITLE LIST:", listing.getTitle());
                 list.addAll(listing.getItems());
+                Log.d("List Length: ", String.valueOf(list.size()));
             }
 
             @Override
@@ -223,6 +222,7 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
 
             }
         });
+        setData(list);
         return list;
     }
     /**
@@ -298,7 +298,7 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
      */
     @Override
     public void updateList() {
-        setData(getList());
+        getList();
     }
 
     @Override
