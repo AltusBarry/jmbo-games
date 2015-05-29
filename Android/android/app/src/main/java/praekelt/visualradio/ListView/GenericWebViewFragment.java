@@ -3,6 +3,7 @@ package praekelt.visualradio.ListView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,7 +52,7 @@ public class GenericWebViewFragment extends Fragment {
 
         public void onStart() {
             if(firstLaunch) {
-                callback.initView("game");
+                callback.initView("Game");
             } else {
                 initDetail();
             }
@@ -68,8 +69,19 @@ public class GenericWebViewFragment extends Fragment {
          */
         public void initDetail() {
             WebView textBody = (WebView) getView().findViewById(R.id.text_body);
-                textBody.loadData("http://127.0.0.1:8000" + (item.getPermalink()), "text/html; charset=UTF-8", null);
-                getActivity().getActionBar().setTitle(R.string.title_news);
+
+            String url = "http://192.168.1.114:8000" + (item.getPermalink());
+            Log.d(url, "");
+
+            //textBody.loadData("https://docs.djangoproject.com/en/1.8/ref/forms/widgets/", "text/html; charset=UTF-8", null);
+
+            textBody.getSettings().setJavaScriptEnabled(true);
+            textBody.loadUrl(url);
+            //textBody.measure(100, 100);
+            //textBody.getSettings().setUseWideViewPort(true);
+            //textBody.getSettings().setLoadWithOverviewMode(true);
+
+            getActivity().getActionBar().setTitle(R.string.title_news);
 
         }
 

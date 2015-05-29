@@ -49,6 +49,8 @@ public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
         if (data != null) {
             items.addAll(data);
         }
+
+        notifyDataSetChanged();
     }
 
     public void forceUpdate() {
@@ -78,7 +80,7 @@ public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Item indexItem = getItem(position);
         ViewHolder viewHolder;
-        int type = getItemViewType(position);
+        //int type = getItemViewType(position);
         // if current view does not exist, inflate new layout and add views to viewHolder
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -88,12 +90,15 @@ public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
             viewHolder.imageView = (ImageView) convertView.findViewById(R.id.index_picture);
             viewHolder.imageView.setImageBitmap(null);
             viewHolder.position = position;
+
+            convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            viewHolder.imageView.setImageBitmap(null);
-            //imageLoader.displayImage(indexItem.getImageDetailUrl(), viewHolder.imageView, indexItem.getImageDetailUrl(), indexItem.imageDir);
-            viewHolder.titleText.setText(indexItem.getTitle());
+
         }
+        viewHolder.imageView.setImageBitmap(null);
+        //imageLoader.displayImage(indexItem.getImageDetailUrl(), viewHolder.imageView, indexItem.getImageDetailUrl(), indexItem.imageDir);
+        viewHolder.titleText.setText(indexItem.getTitle());
         return convertView;
     }
 

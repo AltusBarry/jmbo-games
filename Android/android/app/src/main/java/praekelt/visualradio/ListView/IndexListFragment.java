@@ -96,6 +96,7 @@ public class IndexListFragment extends ListFragment {
     public void onListItemClick(ListView list, View v, int listPosition, long id) {
         //Send Data of Clicked Item
         Item item = (Item) listAdapter.getItem(listPosition);
+        callback.inflateView(item, "Game");
     }
 
     /**

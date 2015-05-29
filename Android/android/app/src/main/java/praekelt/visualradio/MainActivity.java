@@ -199,9 +199,9 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
        }
    }
     // END ANDROID SPECIFIC METHODS
-
+    List<Item> list = new ArrayList<>();
     private List<Item> getList() {
-        final List<Item> list = new ArrayList<>();
+
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(Constants.LOCAL_URL_BASE)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
@@ -213,7 +213,9 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
             @Override
             public void success(VerticalThumbnailListing listing, Response response) {
                 Log.i("TITLE LIST:", listing.getTitle());
-                list.addAll(listing.getItems());
+
+                list = (listing.getItems());
+                setData(listing.getItems());
                 Log.d("List Length: ", String.valueOf(list.size()));
             }
 
@@ -222,7 +224,7 @@ public class MainActivity extends FragmentActivity implements IndexListFragment.
 
             }
         });
-        setData(list);
+        //setData(list);
         return list;
     }
     /**
