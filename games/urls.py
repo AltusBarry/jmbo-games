@@ -1,8 +1,12 @@
-from django.conf.urls import patterns, url, include
+from django.conf.urls import patterns, url
 from django.views.generic.base import TemplateView
 
+from jmbo.urls import v1_api
+
 from games.views import CreateReview, submit_review
-from games.forms import ReviewFormAlt
+from games.api import GameResource
+
+v1_api.register(GameResource())
 
 urlpatterns = patterns(
 
