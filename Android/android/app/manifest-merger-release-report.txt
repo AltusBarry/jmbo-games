@@ -129,7 +129,7 @@ MERGED from com.android.support:support-v4:22.1.0:22:5
 		ADDED from AndroidManifest.xml:17:9
 	android:logo
 		ADDED from AndroidManifest.xml:16:9
-activity#praekelt.visualradio.LoginArea.LoginActivity
+activity#weblistingapp.LoginArea.LoginActivity
 ADDED from AndroidManifest.xml:18:9
 	android:label
 		ADDED from AndroidManifest.xml:20:13
@@ -147,19 +147,19 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:25:17
 	android:name
 		ADDED from AndroidManifest.xml:25:27
-activity#praekelt.visualradio.MainActivity
+activity#weblistingapp.MainActivity
 ADDED from AndroidManifest.xml:28:9
 	android:launchMode
 		ADDED from AndroidManifest.xml:30:13
 	android:name
 		ADDED from AndroidManifest.xml:29:13
-activity#praekelt.visualradio.LoginArea.CreateProfileActivity
+activity#weblistingapp.LoginArea.CreateProfileActivity
 ADDED from AndroidManifest.xml:32:9
 	android:label
 		ADDED from AndroidManifest.xml:33:13
 	android:name
 		ADDED from AndroidManifest.xml:32:19
-activity#praekelt.visualradio.UpdateProfileActivity
+activity#weblistingapp.UpdateProfileActivity
 ADDED from AndroidManifest.xml:35:9
 	android:label
 		ADDED from AndroidManifest.xml:37:13

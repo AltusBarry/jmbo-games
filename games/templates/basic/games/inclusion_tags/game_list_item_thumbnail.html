@@ -27,7 +27,9 @@
         {% with object.characters as characters %}
             <ul>
                 {% for chracter in characters %}
-                <li><img src="{{ chracter.get_thumbnail_url }}"></li>
+                <li>
+                    <img src="{{ chracter.get_thumbnail_url }}">
+                </li>
                 {% endfor %}
             </ul>
         {%  endwith %}
