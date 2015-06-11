@@ -27,9 +27,11 @@ import praekelt.weblistingapp.ListView.ModelBaseDetailFragment;
 import praekelt.weblistingapp.ListView.IndexListFragment;
 import praekelt.weblistingapp.LoginArea.LoginActivity;
 import praekelt.weblistingapp.Rest.API;
+import praekelt.weblistingapp.Rest.DetailModels.ModelBase;
 import praekelt.weblistingapp.Rest.Models.Item;
 import praekelt.weblistingapp.Rest.Models.ReceivedProfileData;
 import praekelt.weblistingapp.Utils.Constants;
+import praekelt.weblistingapp.Utils.JSONUtils;
 import praekelt.weblistingapp.Utils.Registry;
 import praekelt.weblistingapp.Utils.SavedData;
 import retrofit.Callback;
@@ -196,10 +198,11 @@ public class MainActivity extends Activity implements IndexListFragment.listCall
            }
        }
     }
-
+    private static final Object detailObj = null;
     // END ANDROID SPECIFIC METHODS
-    List<Item> list = new ArrayList<>();
-    private List<Item> getList() {
+    List<ModelBase> list = new ArrayList<>();
+    private List<ModelBase> getList() {
+        Object detailObj = null;
         final String responseJSON = "";
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(Constants.LOCAL_URL_BASE)
@@ -212,20 +215,6 @@ public class MainActivity extends Activity implements IndexListFragment.listCall
             @Override
             public void success(JsonElement s, Response response) {
                 Log.d("STRING", String.valueOf(s));
-
-                try {
-                    testResponses(s);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
             }
 
             @Override
@@ -255,15 +244,7 @@ public class MainActivity extends Activity implements IndexListFragment.listCall
     }
 
     // TODO
-    private void testResponses(JsonElement element) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 
-        Gson gson = new GsonBuilder().create();
-
-        Object obj = gson.fromJson(element, Registry.getDetailClass("Post"));
-        Method m = obj.getClass().getDeclaredMethod("getContent", new Class<?>[0]);
-
-        Log.d("OBJECT STAGS: ", (String) m.invoke(obj));
-    }
 
     /**
      * Adds Fragments to views or checks if Fragments already exist and re uses them
