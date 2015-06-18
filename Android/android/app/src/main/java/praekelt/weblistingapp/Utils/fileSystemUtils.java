@@ -1,5 +1,6 @@
 package praekelt.weblistingapp.Utils;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -20,17 +21,23 @@ public class fileSystemUtils {
         File dir = new File(directory);
         if(!dir.exists()) {
             dir.mkdir();
-            Log.i("dirMade", directory);
+            Log.i("dirMade", dir.getAbsolutePath());
         }
     }
 
-    public void appendFeed(JSONObject data) {
+    public static void checkExternalDirectory(Context context, String subfolderName) {
 
+        File dir = new File(context.getExternalFilesDir(null).toString() + "/" + subfolderName);
+        if(!dir.exists()) {
+            dir.mkdir();
+            Log.i("dirMade", dir.getAbsolutePath());
+        }
     }
 
     public static String fileMD5CheckSum(String filePath) throws IOException, NoSuchAlgorithmException {
         InputStream fis =  new FileInputStream(filePath);
 
+        // TODO change to undefined length
         byte[] buffer = new byte[1024];
         MessageDigest complete = MessageDigest.getInstance("MD5");
         int numRead;

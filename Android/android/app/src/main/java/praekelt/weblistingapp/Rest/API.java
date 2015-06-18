@@ -17,11 +17,11 @@ public class API {
     public interface JMBOApi {
 
         //@Headers("Content-Type: application/json")
-        @GET("/listing/game-index/?format=json")
+        @GET("/api/v1/listing/2/?format=json")
         void getVerticalThumbnailListing(Callback<VerticalThumbnailListing> callback);
 
-        @GET("/detail/{slug}/?format=json")
-        void getItem(@Path("slug") Callback<Item> callback);
+        @GET("/{uri}?format=json")
+        void getItem(@Path(value = "uri", encode=false) String uri, Callback<JsonElement> response);
 
         @GET("/post/post/?format=json")
         //public JsonElement getTestPost(String item);

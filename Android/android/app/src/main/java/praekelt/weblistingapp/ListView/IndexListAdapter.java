@@ -1,6 +1,7 @@
 package praekelt.weblistingapp.ListView;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import java.util.List;
 
 import praekelt.weblistingapp.R;
 import praekelt.weblistingapp.Rest.Models.Item;
+import praekelt.weblistingapp.Utils.Constants;
+import praekelt.weblistingapp.Utils.StringUtils;
 
 /**
  * Created by altus on 2015/01/12.
@@ -22,9 +25,11 @@ public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
     private LayoutInflater inflater;
     private ArrayList<Item> items;
     private ImageLoader imageLoader;
+    private Context context;
 
     public IndexListAdapter(Context context, ArrayList<Item> contents) {
         this.items = contents;
+        this.context= context;
 
         inflater = LayoutInflater.from(context);
         imageLoader = new ImageLoader(context);
@@ -93,8 +98,14 @@ public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
 
         }
         viewHolder.imageView.setImageBitmap(null);
-        //imageLoader.displayImage(indexItem.getImageDetailUrl(), viewHolder.imageView, indexItem.getImageDetailUrl(), indexItem.imageDir);
+        imageLoader.displayImage(Constants.LOCAL_URL_BASE + indexItem.getImageDetailUrl(), viewHolder.imageView, indexItem.getImageDetailUrl(), "/images");
+        imageLoader.displayImage(Constants.LOCAL_URL_BASE + indexItem.getImageDetailUrl(),
+                viewHolder.imageView,
+                (StringUtils.uniqueMD5(Constants.LOCAL_URL_BASE + indexItem.getImageDetailUrl())),
+                (context.getExternalFilesDir(null)).toString() + "/images");
+
         viewHolder.titleText.setText(indexItem.getTitle());
+        Log.d("Adapter Resource URI: ", indexItem.getResourceUri());
         return convertView;
     }
 
@@ -113,7 +124,6 @@ public class IndexListAdapter extends BaseAdapter{//ArrayAdapter<ModelBase> {
     public int getViewTypeCount() {
         return 1;
     }
-
 
     public int getItemViewType(int position) {
         return 0;

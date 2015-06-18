@@ -42,7 +42,7 @@ public class IndexListFragment extends ListFragment {
     }
 
     public interface listCallbacks {
-        public void inflateView(Item item, String id);
+        public void inflateView(String type, String uri);
         public void setPosition(Bundle bundle);
         public void updateList();
         public String getFilter();
@@ -95,8 +95,9 @@ public class IndexListFragment extends ListFragment {
      */
     public void onListItemClick(ListView list, View v, int listPosition, long id) {
         //Send Data of Clicked Item
-        Item item = (Item) listAdapter.getItem(listPosition);
-        callback.inflateView(item, "Game");
+        Item item = listAdapter.getItem(listPosition);
+        Log.d("Resourcec URI: ", item.getResourceUri());
+        callback.inflateView(item.getClassName(), item.getResourceUri());
     }
 
     /**

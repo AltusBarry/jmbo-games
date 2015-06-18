@@ -21,7 +21,7 @@ public class JSONUtils {
         Gson gson = new GsonBuilder().create();
 
         Object obj = gson.fromJson(element, Registry.getDetailClass(getClassType(element)));
-        Method m = obj.getClass().getDeclaredMethod("getClassName");
+        Method m = obj.getClass().getDeclaredMethod("getContent");
         Log.d("Object Class: ", (String) m.invoke(obj));
 
         return obj;

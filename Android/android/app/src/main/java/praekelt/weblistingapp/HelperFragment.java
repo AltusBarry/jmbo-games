@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import praekelt.weblistingapp.Utils.SavedData;
+import praekelt.weblistingapp.Utils.StateData;
 import praekelt.weblistingapp.Utils.fileSystemUtils;
 
 /**
@@ -38,7 +38,7 @@ import praekelt.weblistingapp.Utils.fileSystemUtils;
  */
 public class HelperFragment extends Fragment {
     public helperCallbacks callback;
-    private SavedData savedData;
+    private StateData stateData;
     //private final String recordPostURL = "http://192.168.0.3:8000/v1/api/upload-audio-file/";
     private final String recordPostURL = "http://qa-visual-radio.za.prk-host.net/v1/api/upload-audio-file/";
     private ExecutorService executorService;
@@ -55,6 +55,9 @@ public class HelperFragment extends Fragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
         }
+
+        // Check for and Init folders for use
+        fileSystemUtils.checkExternalDirectory(getActivity().getApplicationContext(), "images");
     }
 
     public interface helperCallbacks {
@@ -74,12 +77,12 @@ public class HelperFragment extends Fragment {
         super.onDetach();
     }
 
-    public void setData(SavedData savedData) {
-        this.savedData = savedData;
+    public void setData(StateData stateData) {
+        this.stateData = stateData;
     }
 
-    public SavedData getData(){
-        return savedData;
+    public StateData getData(){
+        return stateData;
     }
 
     /**

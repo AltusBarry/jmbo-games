@@ -152,8 +152,7 @@ public class ImageLoader {
             }else {
                 imageToLoad.view.setImageResource(default_id);
             }
-
-            }
+        }
     }
 
     boolean imageViewReused(ImageToLoad imageToLoad) {

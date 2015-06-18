@@ -7,7 +7,7 @@ public final class Constants {
     }
     public static final String VR_BASE_URL = "http://qa-visual-radio.za.prk-host.net/v1/api";
 
-    public static final String LOCAL_URL_BASE = "http://192.168.1.114:8000/api/v1";
+    public static final String LOCAL_URL_BASE = "http://192.168.0.248:8000";
 
     public static final String INDEX_LIST = "app.indexList";
 
